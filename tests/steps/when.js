@@ -62,8 +62,10 @@ let respondFrom = function (httpRes) {
       }
 
       let res = await httpReq;
+      console.log('res' + '-----' + res);
       return respondFrom(res);
     } catch (err) {
+      console.log('error' + '-----' + JSON.stringify(err));
       if (err.status) {
         return {
           statusCode: err.status,
