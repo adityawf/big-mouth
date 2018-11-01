@@ -12,7 +12,9 @@ async function getRestaurants(count) {
         TableName: tableName,
         Limit: count
     }
+    console.log('req' + '-----' + req);
     let resp = await dynamodb.scan(req).promise();
+    console.log('resp' + '-----' + resp);
     return resp.Items;
 }
 

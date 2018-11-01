@@ -75,17 +75,19 @@ let respondFrom = function (httpRes) {
     }
   };
 
-async function viaHandler(event, functionName) {
+async function viaHandler(event, functionName) {console.log('handler' + '-----' + 'started');
     let handler = require(`${APP_ROOT}/functions/${functionName}`).handler;
     let context = {};
     try {
-        let response = await handler(event,context);
+        let response = await handler(event,context);console.log('response' + '-----' + response);
         let contentType = _.get(response, 'headers.content-type', 'application/json');
         if (response.body && contentType === 'application/json') {
             response.body = JSON.parse(response.body);
+            console.log('finish' + '-----' + response.body);
         }
         return response;
     } catch(err) {
+      console.log('error' + '-----' + JSON.stringify(err));
         return err;
     }
 }
