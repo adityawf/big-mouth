@@ -6,9 +6,11 @@ const init = require('../steps/init').init;
 const cheerio = require('cheerio');
 
 describe('When we invoke the GET / endpoint', () => {
-    before(() => {
-        init();
+    console.log("get index start");
+    before(async () => {
+        await init();
     });
+    console.log("get init finished");
 
     it('Should return the index with 8 restaurants', async () => {
         let res = await when.we_invoke_get_index();
